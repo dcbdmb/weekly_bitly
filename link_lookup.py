@@ -5,11 +5,8 @@ import getopt
 import sys
 
 def check_input():
-    #print "ARGV:",sys.argv[0:]
 
     options, remainder = getopt.gnu_getopt(sys.argv[1:], 'u:', ['url='])
-
-    #print 'Options:',options
 
     opt_count = 0
 
@@ -37,8 +34,6 @@ link_params = {'access_token':config['token'], 'url':long_url}
 
 link_lookup = 'https://api-ssl.bitly.com/v3/user/link_lookup'
 response = requests.get(link_lookup, params=link_params, verify=True)
-
-#output = response.json()
 
 output = response.json()['data']['link_lookup'][0]
 if 'error' in output.keys():
